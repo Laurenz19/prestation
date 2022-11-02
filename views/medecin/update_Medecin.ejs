@@ -1,0 +1,96 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">medecin</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Médecin
+
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+            <section id="multiple-inputs">
+                <%-include('../include/message.ejs')%>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">
+                                        <%= title%>
+                                    </h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+
+                                        <form action="/medecin/update/<%=medecin._id%>" method="POST" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <fieldset>
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">Nom et Prénoms</span>
+                                                            </div>
+                                                            <input type="text" name="nom" aria-label="First name" class="form-control" placeholder="Nom" value="<%=medecin.nom%>" required>
+                                                            <input type="text" name="prenoms" aria-label="Last name" class="form-control" placeholder="Prénoms" value="<%=medecin.prenoms%>" required>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                            <div class="divider">
+                                                <div class="divider-text">Numero & Taux Journalier</div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="input-group input-group-sm mb-3">
+                                                        <span class="input-group-text" id="inputGroup-sizing-sm">Numéro: </span>
+                                                        <input type="text" class="form-control" name="numMedecin" aria-label="Sizing example input" value="<%=medecin.numMedecin%>" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="inputGroup-sizing-default">Taux: </span>
+                                                        <input type="number" class="form-control" name="tj" min="0" aria-label="Sizing example input" value="<%=medecin.tj%>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        <span class="input-group-text" id="inputGroupFileAddon01"><i data-feather="upload"></i></span>
+                                                        <input type="file" name="image" required>
+                                                        </fieldset>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary mr-1 mb-1">Modifier</button>
+                                                <a href="/medecin" class="btn btn-secondary mr-1 mb-1">Annuler</a>
+                                                <!--<button type="reset" class="btn btn-secondary mr-1 mb-1">Annuler</button>-->
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+            </section>
+        </div>
+        <!-- Include _footPage-->
+        <%- include('../include/_footPage.ejs') %>
+            <!-- _footPage included-->

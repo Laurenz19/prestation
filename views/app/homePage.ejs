@@ -1,0 +1,152 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <h3>Page d'acceuil</h3>
+            <p class="text-subtitle text-muted" id="welcome-message"></p>
+        </div>
+        <section class="section">
+            <div class="row mb-2">
+                <div class="col-12 col-md-3">
+                    <div class="card card-statistic">
+                        <div class="card-body p-0">
+                            <div class="d-flex flex-column">
+                                <div class='px-3 py-3 d-flex justify-content-between'>
+                                    <h3 class='card-title'>Utilisateur(s)</h3>
+                                    <div class="card-right d-flex align-items-center">
+                                        <p>
+                                            <%= nbTab(users) %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="canvas1" style="height:100px !important"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="card card-statistic">
+                        <div class="card-body p-0">
+                            <div class="d-flex flex-column">
+                                <div class='px-3 py-3 d-flex justify-content-between'>
+                                    <h3 class='card-title'>Patients</h3>
+                                    <div class="card-right d-flex align-items-center">
+                                        <p>
+                                            <%= nbTab(patients) %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="canvas2" style="height:100px !important"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="card card-statistic">
+                        <div class="card-body p-0">
+                            <div class="d-flex flex-column">
+                                <div class='px-3 py-3 d-flex justify-content-between'>
+                                    <h3 class='card-title'>Médecins</h3>
+                                    <div class="card-right d-flex align-items-center">
+                                        <p>
+                                            <%= nbTab(medecins) %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="canvas3" style="height:100px !important"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="card card-statistic">
+                        <div class="card-body p-0">
+                            <div class="d-flex flex-column">
+                                <div class='px-3 py-3 d-flex justify-content-between'>
+                                    <h3 class='card-title'>Traitements</h3>
+                                    <div class="card-right d-flex align-items-center">
+                                        <p>
+                                            <%= nbTab(traitements) %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="canvas4" style="height:100px !important"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Liste des medecins</h4>
+                <div class="d-flex ">
+                    <i data-feather="download"></i>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-0">
+                <div class="table-responsive">
+                    <table class='table mb-0' id="table1">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Numero</th>
+                                <th>Nom</th>
+                                <th>Prénoms</th>
+                                <th>Taux Journalier</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (medecins.length > 0) { %>
+                                <% medecins.forEach(medecin => { %>
+                                    <tr>
+                                        <td>
+                                            <div class="avatar bg-warning ">
+                                                <img src="img/image//<%=medecin.imageUrl%>" alt="" srcset="">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%= medecin.numMedecin %>
+                                        </td>
+                                        <td>
+                                            <%= medecin.nom %>
+                                        </td>
+                                        <td>
+                                            <%= medecin.prenoms  %>
+                                        </td>
+                                        <td>
+                                            <%= medecin.tj %>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info round" href="/medecin/<%=medecin._id%>">info</a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+
+                                        <% } else { %>
+                                            <tr>Aucun medecin</tr>
+                                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

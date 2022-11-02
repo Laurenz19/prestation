@@ -1,0 +1,113 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Préstation Annuelle</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Préstations
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+        </div>
+        <section class="section">
+            <div class="card">
+                <div class="card-header  d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">
+                        <%= title%>
+                    </h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Préstation</a>
+                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Histogramme</a>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                        <table class='table' id="table1">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Numero du medecin</th>
+                                                    <th>Nom</th>
+                                                    <th>Prénoms</th>
+                                                    <th>Taux Journalier</th>
+                                                    <th>Préstation (Ariary)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if (bilan.length > 0) { %>
+                                                    <% bilan.forEach(medecin => { %>
+                                                        <tr class="recette">
+                                                            <td>
+                                                                <div class="avatar bg-warning ">
+                                                                    <img src="/img/image/<%=medecin.url%>" alt="" srcset="">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <%= medecin.num %>
+                                                            </td>
+                                                            <td>
+                                                                <%= medecin.nom  %>
+                                                            </td>
+                                                            <td>
+                                                                <%= medecin.prenoms  %>
+                                                            </td>
+                                                            <td>
+                                                                <%= medecin.tj  %>
+                                                            </td>
+                                                            <td>
+                                                                <%= medecin.Somme_prestations  %>
+                                                            </td>
+                                                        </tr>
+
+                                                        <% }) %>
+                                                            <% } %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                        <div class="col-md-9">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Préstation annuelle</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div id="char-container">
+                                                        <canvas id="bar"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

@@ -1,0 +1,81 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">patient</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Patients
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+        </div>
+        <section class="section">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+
+                    <h4 class="card-title">
+                        <%= title%>
+                    </h4>
+                    <div class="d-flex ">
+                        <a href="/new-patient" class="btn icon icon-left btn-success">+</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class='table' id="table1">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénoms</th>
+                                <th>Adresse</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (patients.length > 0) { %>
+                                <% patients.forEach(patient => { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <%= patient.nom %>
+                                        </td>
+                                        <td>
+                                            <%= patient.prenoms  %>
+                                        </td>
+                                        <td>
+                                            <%= patient.adresse %>
+                                        </td>
+
+                                        <td>
+                                            <a href="/update-patient/<%=patient._id%>" class="btn icon icon-left btn-primary"><i data-feather="edit"></i></a>
+                                            <!-- <a href="/patient/<%=patient._id%>" class="btn icon icon-left btn-info"><i data-feather="info"></i></a>-->
+                                            <a href="/delete-patient/<%=patient._id%>" class="btn icon icon-left btn-warning"><i data-feather="alert-triangle"></i></a>
+
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

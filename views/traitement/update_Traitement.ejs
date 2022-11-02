@@ -1,0 +1,108 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">traitement</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Traitement
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+        </div>
+        <section class="section">
+            <div class="row mb-4">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>
+                                <%= title %>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/traitement/update/<%= traitement._id%>" method="POST" class="form form-vertical">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Date de consultation (<%= moment(traitement.dateCons).format('DD/MM/YYYY')%>)</label>
+                                                <div class="position-relative">
+                                                    <input type="date" name="dateCons" class="form-control" id="first-name-icon" required>
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="grid" width="20"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Medecin traitant</label>
+                                                <select class="form-select" id="inputGroupSelect01" name="medecin" required>
+                                                    <option value="<%= medecin.numMedecin%>" selected> <%= medecin.nom %> <%= medecin.prenoms %> </option>
+                                                    <% if (medecins.length >0) { %>
+                                                        <% medecins.forEach(medecin => { %>
+                                                            <option value="<%= medecin.numMedecin  %>"> <%= medecin.nom %> <%= medecin.prenoms %> </option>
+                                                        <% }) %>
+                                                    <% } else { %>
+                                                        <option>Aucun médecin</option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+
+                                            <div class="form-group has-icon-left">
+                                                <div class="form-group has-icon-left">
+                                                    <label for="first-name-icon">Patient</label>
+                                                    <select class="form-select" id="inputGroupSelect01" name="patient" required>
+                                                        <option value="<%= patient._id %>" selected>  <%= patient.nom %> <%= patient.prenoms %> </option>
+                                                        <% if (patients.length >0) { %>
+                                                            <% patients.forEach(patient => { %>
+                                                                <option value="<%= patient._id  %>"> <%= patient.nom %> <%= patient.prenoms %> </option>
+                                                            <% }) %>
+                                                        <% } else { %>
+                                                            <option>Aucun patient</option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Durée du traitement (jour)</label>
+                                                <div class="position-relative">
+                                                    <input type="number" name="nbjour" class="form-control" min="1" max="365" id="first-name-icon" value="<%= traitement.nbjour%>" required>
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="layers" width="20"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Modifier</button>
+                                            <button type="reset" class="btn btn-secondary mr-1 mb-1">Annuler</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

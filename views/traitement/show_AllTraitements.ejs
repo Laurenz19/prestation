@@ -1,0 +1,92 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">traitement</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Traitement
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+        </div>
+        <section class="section">
+            <div class="card">
+                <div class="card-header  d-flex justify-content-between align-items-center">
+                    <h4 class="card-title">
+                        <%= title%>
+                    </h4>
+                    <div class="d-flex ">
+                        <a href="/new-traitement" class="btn icon icon-left btn-success">
+                            +
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class='table' id="table1">
+                        <thead>
+                            <tr>
+                                <th>Numero du medecin</th>
+                                <th>Patients</th>
+                                <th>Date de consultation</th>
+                                <th>Durée</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (traitements.length > 0) { %>
+                                <% traitements.forEach(traitement => { %>
+
+                                    <tr>
+
+                                        <td>
+                                            <%= traitement.numMedecin %>
+                                        </td>
+                                        <td>
+                                            <% if (patients.length>0) { %>
+                                                <% patients.forEach(patient => { %>
+                                                    <% if (patient.id==traitement.patientId) { %>
+                                                        <%= patient.nom %>
+                                                            <%= patient.prenoms %>
+                                                                <% } %>
+                                                                    <% }) %>
+                                                                        <% } %>
+                                        </td>
+                                        <td>
+                                            <%= moment(traitement.dateCons).format('DD/MM/YYYY')%>
+                                        </td>
+                                        <td>
+                                            <%= traitement.nbjour  %>
+                                        </td>
+
+                                        <td>
+                                            <a href="/update-traitement/<%=traitement._id%>" class="btn icon icon-left btn-primary"><i data-feather="edit"></i></a>
+                                            <!-- <a href="/traitement/<%=traitement._id%>" class="btn icon icon-left btn-info"><i data-feather="info"></i></a>-->
+                                            <a href="/delete-traitement/<%=traitement._id%>" class="btn icon icon-left btn-warning"><i data-feather="alert-triangle"></i></a>
+
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                        <% } %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

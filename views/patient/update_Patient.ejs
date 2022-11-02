@@ -1,0 +1,87 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">patient</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Patient
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+        </div>
+        <section class="section">
+            <div class="row mb-4">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Modification d'un patient</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="/patient/update/<%= patient.id %> " method="POST" class="form form-vertical">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Nom</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" name="nom" placeholder="nom du patient" id="first-name-icon" value="<%= patient.nom %>" required>
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group has-icon-left">
+                                                <label for="first-name-icon">Prénoms</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" name="prenoms" placeholder="prénoms" id="first-name-icon" value="<%= patient.prenoms %>" required>
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+
+                                            <div class="form-group has-icon-left">
+                                                <label for="email-id-icon">Adresse</label>
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" name="adresse" placeholder="adresse" id="email-id-icon" value="<%= patient.adresse %>" required>
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="mail"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Modifier</button>
+                                            <a href="/traitement" class="btn btn-secondary mr-1 mb-1">Annuler</a>
+                                            <!-- <button type="reset" class="btn btn-secondary mr-1 mb-1">Annuler</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

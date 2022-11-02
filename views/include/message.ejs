@@ -1,0 +1,10 @@
+<% if (errors.length > 0) { %>
+
+    <% errors.forEach(error => { %>
+        <div class="alert alert-light-danger"><i data-feather="star"></i>
+            <%= error.message%>
+        </div>
+        <% }) %>
+            <% } else { %>
+
+                <% } %>

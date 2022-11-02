@@ -1,0 +1,192 @@
+<!-- Include _headPage-->
+<%- include('../include/_headPage.ejs') %>
+    <!-- _headPage included-->
+
+    <div class="main-content container-fluid">
+        <div class="page-title">
+            <div class="col-md-12">
+                <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home">Acceuil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">medecin</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-12">
+                <h3>
+                    Médecin
+                </h3>
+                <p class="text-subtitle text-muted">
+                    <%= description %>
+                </p>
+            </div>
+        </div>
+        <section class="list-group-navigation">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-2 ">
+                                        <div class="card">
+                                            <div class="list-group" role="tablist">
+                                                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab">Patients Traités</a>
+                                                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">About</a>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span>Numero du medecin: </span>
+                                                    <span class="badge bg-info badge-pill ml-1"> <%= medecin.numMedecin %></span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span>Taux journalier (Ar):</span>
+                                                    <span class="ml-1"><%= medecin.tj %></span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span>Nombre des Patients traités:</span>
+                                                    <span class="badge bg-info badge-pill badge-round ml-1"><%= Tableau.length %></span>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-9 mt-1">
+                                        <div class="tab-content text-justify" id="nav-tabContent">
+                                            <div class="tab-pane show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header  d-flex justify-content-between align-items-center">
+                                                            <h4 class="card-title">
+                                                                <div class="avatar avatar-lg">
+                                                                    <img src="/img/image/<%=medecin.imageUrl%>" alt="" srcset="">
+                                                                </div>
+                                                                <%= medecin.nom %>
+                                                                    <%= medecin.prenoms%>
+                                                            </h4>
+                                                            <div class="btn-group dropright d-flex mr-3 mb-3">
+                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton902" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Recherche
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton902">
+                                                                    <h6 class="dropdown-header">Entre deux dates</h6>
+                                                                    <form action="/medecin/getPatient/<%=medecin._id%>" method="POST" class="px-2 py-2 dropdown-item">
+                                                                        <div class="form-group input-group-sm">
+                                                                            <label for="exampleDropdownFormEmail1">Debut</label>
+                                                                            <input type="date" class="form-control" id="exampleDropdownFormEmail1" name="debut">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleDropdownFormPassword1">Fin</label>
+                                                                            <input type="date" class="form-control" id="exampleDropdownFormPassword1" name="fin">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary btn-sm">Go</button>
+                                                                    </form>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <h6 class="dropdown-header">Par Date</h6>
+                                                                    <form action="/medecin/getPatientByDate/<%=medecin._id%>" method="POST" class="px-2 py-2 dropdown-item">
+                                                                        <div class="form-group">
+                                                                            <input type="date" class="form-control" id="exampleDropdownFormPassword1" name="date">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary btn-sm">Go</button>
+                                                                    </form>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <h6 class="dropdown-header">Par an</h6>
+                                                                    <form action="/medecin/getPatientByYear/<%=medecin._id%>" method="POST" class="px-2 py-2 dropdown-item">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" id="exampleDropdownFormPassword1" name="year">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary btn-sm">Go</button>
+                                                                    </form>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item" href="/medecin/<%=medecin._id%>">Retour</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-content">
+                                                            <div class="card-body">
+                                                                <!-- table striped -->
+                                                                <div class="table-responsive">
+                                                                    <table class='table' id="table1">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Nom</th>
+                                                                                <th>Adresse</th>
+                                                                                <th>Date de consultation</th>
+                                                                                <th>Durée (Jour)</th>
+                                                                                <th>Montant</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tfoot>
+                                                                            <tr>
+                                                                                Total:
+                                                                                <%=total%>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                        <tbody>
+                                                                            <% if (Tableau.length > 0) { %>
+                                                                                <% Tableau.forEach(tab => { %>
+                                                                                    <tr>
+                                                                                        <td class="text-bold-500">
+                                                                                            <%=tab.patient%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%=tab.adresse%>
+                                                                                        </td>
+                                                                                        <td class="text-bold-500">
+                                                                                            <%= moment(tab.date).format('DD/MM/YYYY')%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%=tab.nbjour%>
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <%=tab.montant%>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <% }) %>
+                                                                                        <% } %>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h4 class="card-title">
+                                                                <div class="avatar avatar-xl mr-3">
+                                                                    <img src="/img/image/<%=medecin.imageUrl%>" alt="" srcset="">
+                                                                </div>
+                                                                <%= medecin.nom %>
+                                                                    <%= medecin.prenoms%>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="card-content">
+                                                            <div class="card-body">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- Include _footPage-->
+    <%- include('../include/_footPage.ejs') %>
+        <!-- _footPage included-->

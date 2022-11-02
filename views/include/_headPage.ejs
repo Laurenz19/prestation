@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPMédecin app </title>
+
+    <link rel="stylesheet" href="/design/docs/assets/css/bootstrap.css">
+
+    <link rel="stylesheet" href="/design/docs/assets/vendors/chartjs/Chart.min.css">
+
+    <link rel="stylesheet" href="/design/docs/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/design/docs/assets/css/app.css">
+    <link rel="stylesheet" href="/design/docs/assets/vendors/simple-datatables/style.css">
+    <link rel="shortcut icon" href="/img/logo_app/logoApp.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class='active'>
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <img src="/img/logo_app/logoApp.png" class="app-logo" alt="" srcset="">
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+
+                        <li class='sidebar-title'>Menu Principal</li>
+
+                        <!-- acceuil-->
+                        <li class="sidebar-item active ">
+                            <a href="/home" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Page d'acceuil</span>
+                            </a>
+
+                        </li>
+
+                        <!-- utilisateur -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Utilisateur</span>
+                            </a>
+
+                            <ul class="submenu ">
+
+                                <li>
+                                    <a href="/user">Liste</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                        <li class='sidebar-title'>Menu</li>
+                        <!-- médecin -->
+                        <li class="sidebar-item  has-sub">
+                            <a href="/medecin" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Medecin</span>
+                            </a>
+
+                            <ul class="submenu ">
+
+                                <li>
+                                    <a href="/medecin">liste des Medecins</a>
+                                </li>
+
+                                <li>
+                                    <a href="/new-medecin">Ajout</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <!-- patient-->
+                        <li class="sidebar-item  has-sub">
+                            <a href="/patient" class='sidebar-link'>
+                                <i data-feather="user" width="20"></i>
+                                <span>Patient</span>
+                            </a>
+
+                            <ul class="submenu ">
+
+                                <li>
+                                    <a href="/patient">Liste des Patients</a>
+                                </li>
+
+                                <li>
+                                    <a href="/new-patient">Ajout</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <!-- Traitement-->
+                        <li class="sidebar-item  has-sub">
+                            <a href="/traitement" class='sidebar-link'>
+                                <i data-feather="file-text" width="20"></i>
+                                <span>Traitement</span>
+                            </a>
+
+                            <ul class="submenu ">
+
+                                <li>
+                                    <a href="/traitement">Liste des traitements</a>
+                                </li>
+
+                                <li>
+                                    <a href="/new-traitement">Ajout</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                        <li class="sidebar-item active ">
+                            <a href="/prestation" class='sidebar-link'>
+                                <i data-feather="home" width="20"></i>
+                                <span>Préstation</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <nav class="navbar navbar-header navbar-expand navbar-light">
+                <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+                <button class="btn navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                                <div class="avatar mr-1">
+                                    <img src="/design/docs/assets/images/avatar/avatar-s-1.png" alt="" srcset="">
+                                </div>
+                                <div class="d-none d-md-block d-lg-inline-block">
+                                    <%= user.username %>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="/user"><i data-feather="user"></i>Utilisateurs</a>
+                                <a class="dropdown-item" href="/logout"><i data-feather="log-out"></i> Logout</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
